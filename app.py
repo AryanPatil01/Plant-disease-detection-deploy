@@ -2,6 +2,7 @@ import os
 os.environ['TF_USE_LEGACY_KERAS'] = '1'
 
 import json
+import urllib.request
 import numpy as np
 import cv2
 import tensorflow as tf
@@ -10,7 +11,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 # Initialize Flask App
-# Serving static files from the root directory for Render deployment
+# Serving static files from the root directory for Render/Railway deployment
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)  # Enable CORS for the frontend interactions
 
@@ -45,6 +46,18 @@ model = None
 def get_model():
     global model
     if model is None:
+        # Direct raw download link from your GitHub repository
+        model_url = 'https://github.com/AryanPatil01/Plant-disease-detection-deploy/raw/main/efficientnetb3-Plant%20Village%20Disease-99.71.h5'
+        
+        # Check if the file is missing, OR if it's just a tiny Git LFS pointer text file (less than 1MB)
+        if not os.path.exists(MODEL_PATH) or os.path.getsize(MODEL_PATH) < 1000000:
+            print("Downloading the full 100MB+ model from GitHub. This might take a minute...")
+            try:
+                urllib.request.urlretrieve(model_url, MODEL_PATH)
+                print("Download complete!")
+            except Exception as e:
+                print(f"Failed to download model: {e}")
+                
         print("Loading model via tf_keras...")
         model = keras.models.load_model(MODEL_PATH)
         print("Model loaded successfully!")
