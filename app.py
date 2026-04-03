@@ -5,7 +5,7 @@ import json
 import numpy as np
 import cv2
 import tensorflow as tf
-import tf_keras as keras
+from tensorflow import keras
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
