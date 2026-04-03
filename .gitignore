@@ -1,0 +1,18 @@
+# Python environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Local settings & logs
+*.log
+.env
+.vscode/
+.idea/
+
+# Flask/Render temp
+instance/
+tmp/
+*.ps1
+disk_space.ps1

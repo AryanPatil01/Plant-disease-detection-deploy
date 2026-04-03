@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease AI | Intelligent Leaf Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Dynamic animated background -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <main class="container">
+        <header>
+            <!-- <div class="badge"><i class="fa-solid fa-leaf"></i> Vision AI</div> -->
+            <h1>Plant Disease <span>Detector</span></h1>
+            <p>Upload a leaf image to instantly diagnose diseases with high-accuracy AI</p>
+        </header>
+
+        <section class="upload-section">
+            <div class="drop-zone" id="drop-zone">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="drop-content">
+                    <div class="icon-pulse">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3>Drag & Drop</h3>
+                    <p>or <span class="browse-btn">browse your computer</span></p>
+                    <span class="file-hint">Supports JPG, PNG, WEBP</span>
+                </div>
+            </div>
+            
+            <div class="preview-container hidden" id="preview-container">
+                <img id="image-preview" src="" alt="Image Preview">
+                <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-xmark"></i></button>
+                <div class="plant-input-group">
+                    <label for="plant-name"><i class="fa-solid fa-leaf"></i> Specify Plant (Optional)</label>
+                    <input type="text" id="plant-name" placeholder="e.g. Tomato, Apple, Corn..." autocomplete="off">
+                    <p class="input-hint">Filters results for better accuracy</p>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="predict-btn">
+                        <span>Predict Disease</span>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading state -->
+        <section class="loading-state hidden" id="loading-state">
+            <div class="scanner"></div>
+            <p>Analyzing leaf structures and pathogens...</p>
+        </section>
+
+        <!-- Results section -->
+        <section class="result-section hidden" id="result-section">
+            <h2>Diagnosis Result</h2>
+            <div class="result-card">
+                <div class="result-header">
+                    <i class="fa-solid fa-microscope"></i>
+                    <span class="confidence" id="confidence-score">99.7% Match</span>
+                </div>
+                <h3 id="disease-name">Apple Scab</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="reset-btn">Analyze Another Image</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
